@@ -1,0 +1,58 @@
+provider "oci" {}
+
+resource "oci_core_instance" "generated_oci_core_instance" {
+	agent_config {
+		is_management_disabled = "false"
+		is_monitoring_disabled = "false"
+		plugins_config {
+			desired_state = "ENABLED"
+			name = "Vulnerability Scanning"
+		}
+		plugins_config {
+			desired_state = "ENABLED"
+			name = "OS Management Service Agent"
+		}
+		plugins_config {
+			desired_state = "ENABLED"
+			name = "Custom Logs Monitoring"
+		}
+		plugins_config {
+			desired_state = "ENABLED"
+			name = "Compute Instance Run Command"
+		}
+		plugins_config {
+			desired_state = "ENABLED"
+			name = "Compute Instance Monitoring"
+		}
+		plugins_config {
+			desired_state = "DISABLED"
+			name = "Block Volume Management"
+		}
+	}
+	availability_config {
+		recovery_action = "RESTORE_INSTANCE"
+	}
+	availability_domain = "FhPf:EU-FRANKFURT-1-AD-1"
+	compartment_id = "ocid1.compartment.oc1..aaaaaaaa"
+	create_vnic_details {
+		assign_private_dns_record = "true"
+		assign_public_ip = "false"
+		subnet_id = "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaar2"
+	}
+	display_name = "WindowsTest1"
+	instance_options {
+		are_legacy_imds_endpoints_disabled = "false"
+	}
+	shape = "VM.Standard.E4.Flex"
+	shape_config {
+		baseline_ocpu_utilization = "BASELINE_1_8"
+		memory_in_gbs = "16"
+		ocpus = "2"
+	}
+	source_details {
+		boot_volume_size_in_gbs = "242"
+		boot_volume_vpus_per_gb = "10"
+		source_id = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaa"
+		source_type = "image"
+	}
+}
